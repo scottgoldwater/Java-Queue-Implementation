@@ -266,7 +266,7 @@ public class Main extends javax.swing.JFrame {
         }while(!isSet);
         
         QueueInit(number);
-        QueueSize.setText("Queue size: "+number);       
+        QueueSize.setText("Queue Size: "+number);       
     }//GEN-LAST:event_formWindowOpened
     
     private void QueueInit(int value)
