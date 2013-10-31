@@ -48,7 +48,7 @@ public class QueueTest {
     }
     
     @Test(expected=QueueFullException.class)
-    public void testInvalidQueueFullException() throws Exception{
+    public void testQueueFullException() throws Exception{
         Queue instance = new Queue(3);
         instance.enqueue(1);
         instance.enqueue(2);
