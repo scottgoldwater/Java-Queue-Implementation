@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package queue;
 
 /**
  *
  * @author
- * Scott Goldwater
+ * Scott Goldwater 
  */
 public interface IQueue {
+    //Removes an integer from the queue
     int dequeue() throws QueueEmptyException;
+    //Adds and integer from the queue
     void enqueue(int var) throws QueueFullException;
 }

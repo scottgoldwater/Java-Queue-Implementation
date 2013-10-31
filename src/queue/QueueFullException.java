@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package queue;
 
 /**
@@ -10,7 +6,7 @@ package queue;
  * Scott Goldwater
  */
 public class QueueFullException extends Exception{
-    
+    //Is thrown when a full queue is enqueued
     public QueueFullException()
     {
         super("This Queue is full");

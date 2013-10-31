@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package queue;
 
 /**
@@ -10,7 +6,7 @@ package queue;
  * Scott Goldwater
  */
 public class Queue implements IQueue{
-
+    //instance variables 
     int[] contents;
     int front;
     int back;
@@ -27,6 +23,7 @@ public class Queue implements IQueue{
         items = 0;
     }
     
+    @Override
     public int dequeue() throws QueueEmptyException{
         
         if(items == 0) 
@@ -38,7 +35,13 @@ public class Queue implements IQueue{
         items--;
         return temp; 
     }
-
+    
+    /**
+     *
+     * @param value
+     * @throws QueueFullException
+     */
+    @Override
     public void enqueue(int value) throws QueueFullException{
         if(items == contents.length)
             throw new QueueFullException();

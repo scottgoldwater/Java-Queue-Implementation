@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package queue;
 
 import org.junit.Test;
@@ -13,7 +9,9 @@ import static org.junit.Assert.*;
  * Scott Goldwater 
  */
 public class QueueTest {
-    
+    /**
+     * Test of dequeue method, of class Queue.
+     */
     @Test
     public void testDequeue() throws Exception {
         System.out.println("dequeue");
