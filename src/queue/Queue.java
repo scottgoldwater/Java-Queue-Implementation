@@ -17,7 +17,7 @@ public class Queue implements IQueue{
     int items; 
     
     
-    public Queue(int length) throws InvalidQueueLengthException
+    public Queue(int length) throws InvalidQueueLengthException, OutOfMemoryError
     {
         if(length<=0)
             throw new InvalidQueueLengthException(length);

@@ -71,6 +71,7 @@ public class Main extends javax.swing.JFrame {
         QueueSize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -78,7 +79,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         VarTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        VarTable.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
+        VarTable.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
         VarTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -136,10 +137,10 @@ public class Main extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 193, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(enqueueButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(dequeueButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(QueueSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 164, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(enqueueButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .add(dequeueButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .add(QueueSize, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,6 +183,7 @@ public class Main extends javax.swing.JFrame {
             if(selectedOption == 1)
             {
                 value = txt.getText();
+                value = value.trim();
                 
                 try
                 {
@@ -234,22 +236,25 @@ public class Main extends javax.swing.JFrame {
         int number =0;
         do
         {
-            int selectedOption = JOptionPane.showOptionDialog(null, panel, "Enter the Queue Size", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options , options[0]);
-
+            int selectedOption = JOptionPane.showOptionDialog(null, panel, "Enter the Queue Size", JOptionPane.CLOSED_OPTION, JOptionPane.QUESTION_MESSAGE, null, options , options[0]);
+            
+            if(selectedOption == -1)
+                System.exit(0);
             if(selectedOption == 0)
             {
                 value = txt.getText();
+                value = value.trim();
                 
                 try
                 {
                     number = Integer.parseInt(value);
-                    if(number>0)
+                    if(number>0 && number<=10000000)
                     {
                         isSet = true;
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(this,"Please put an integer greater than one");
+                        JOptionPane.showMessageDialog(this,"Please put an integer greater than one and less than 10000000");
                     }                
                 }
                 catch(NumberFormatException e)
@@ -270,9 +275,16 @@ public class Main extends javax.swing.JFrame {
         {
             queueInstance = new Queue(value);
         }
+        //shouldn't get here
         catch (InvalidQueueLengthException e )
         {
-            //shouldn't get here
+            JOptionPane.showMessageDialog(this,e.toString());
+            return; 
+        }
+        catch(OutOfMemoryError e)
+        {
+            JOptionPane.showMessageDialog(this,e.toString());
+            return; 
         }
     }
     /**
