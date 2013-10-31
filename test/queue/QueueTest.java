@@ -18,37 +18,16 @@ import static org.junit.Assert.*;
  */
 public class QueueTest {
     
-    public QueueTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of dequeue method, of class Queue.
-     */
     @Test
     public void testDequeue() throws Exception {
         System.out.println("dequeue");
-        Queue instance = null;
-        int expResult = 0;
+        Queue instance = new Queue(3);
+        instance.enqueue(1);
+        instance.enqueue(2);
+        instance.enqueue(3);
+        int expResult = 1;
         int result = instance.dequeue();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,10 +36,39 @@ public class QueueTest {
     @Test
     public void testEnqueue() throws Exception {
         System.out.println("enqueue");
-        int value = 0;
-        Queue instance = null;
-        instance.enqueue(value);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int value = 3;
+        Queue instance = new Queue(3);
+        instance.enqueue(1);
+        instance.enqueue(2);
+        instance.enqueue(3);
+        instance.dequeue();
+        instance.dequeue();
+        int result = instance.dequeue();
+        assertEquals(value,result);
+        
     }
+    
+    @Test(expected=InvalidQueueLengthException.class)
+    public void testInvalidQueueLengthException() throws InvalidQueueLengthException{
+        new Queue(-1);
+    }
+    
+    @Test(expected=QueueFullException.class)
+    public void testInvalidQueueFullException() throws Exception{
+        Queue instance = new Queue(3);
+        instance.enqueue(1);
+        instance.enqueue(2);
+        instance.enqueue(3);
+        instance.enqueue(4);
+        
+    }
+    
+    @Test(expected=QueueEmptyException.class)
+    public void testQueueEmptyException() throws Exception {
+        Queue instance = new Queue (3);
+        instance.dequeue();
+        
+    }
+    
+    
 }
