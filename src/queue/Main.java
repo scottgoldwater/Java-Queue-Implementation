@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author
- * scottyg
+ * Scott Goldwater 
  */
 public class Main extends javax.swing.JFrame {
 
@@ -78,19 +78,20 @@ public class Main extends javax.swing.JFrame {
         });
 
         VarTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        VarTable.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         VarTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Index", "Value"
+                "Value"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -203,7 +204,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,e.toString());
             return; 
         }
-        ((DefaultTableModel)VarTable.getModel()).addRow(new Object[] {VarTable.getRowCount(),number});
+        ((DefaultTableModel)VarTable.getModel()).addRow(new Object[] {number});
     }//GEN-LAST:event_enqueueButtonActionPerformed
 
     private void dequeueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dequeueButtonActionPerformed

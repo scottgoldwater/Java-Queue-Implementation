@@ -7,7 +7,7 @@ package queue;
 /**
  *
  * @author
- * scottyg
+ * Scott Goldwater
  */
 public interface IQueue {
     int dequeue() throws QueueEmptyException;

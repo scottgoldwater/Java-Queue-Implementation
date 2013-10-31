@@ -7,7 +7,7 @@ package queue;
 /**
  *
  * @author
- * scottyg
+ * Scott Goldwater
  */
 public class Queue implements IQueue{
 
