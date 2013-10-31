@@ -12,7 +12,9 @@ package queue;
 public class Queue implements IQueue{
 
     int[] contents;
-    int pointer; 
+    int front;
+    int back;
+    int items; 
     
     
     public Queue(int length) throws InvalidQueueLengthException
@@ -20,21 +22,30 @@ public class Queue implements IQueue{
         if(length<=0)
             throw new InvalidQueueLengthException(length);
         contents = new int[length];
-        pointer = 0; 
+        front = 0;
+        back = 0;
+        items = 0;
     }
     
     public int dequeue() throws QueueEmptyException{
         
-        if(pointer<0) 
+        if(items == 0) 
             throw new QueueEmptyException();
-        pointer--;
-        return contents[pointer+1];    
+        if(front == contents.length)
+            front=0;
+        int temp = contents[front];    
+        front++;
+        items--;
+        return temp; 
     }
 
     public void enqueue(int value) throws QueueFullException{
-        if(pointer == contents.length)
+        if(items == contents.length)
             throw new QueueFullException();
-        contents[pointer] = value;
-        pointer++;
+        if(back == contents.length)
+            back =0;
+        contents[back] = value;
+        back++;
+        items++;
     }    
 }
